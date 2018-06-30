@@ -24,3 +24,14 @@ data = pyf.DataReader('^IBEX', dt(2018, 1, 1), dt(2018, 6,30))
 # and the data frame as the value.
 data = pyf.BatchDataReader(['^IBEX', 'TEF.MC'], dt(2018, 1, 1), dt(2018, 6,30))
 ```
+
+## Installation
+
+This packages has the following dependencies:
+* Pandas>=0.19.2
+* Requests>=2.3.0
+
+To install latest version:
+```
+$ pip install git+https://github.com/jmorenobl/pandas-yahoo-finance.git
+```

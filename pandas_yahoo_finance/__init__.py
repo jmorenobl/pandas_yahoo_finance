@@ -1,18 +1,12 @@
-__author__ = "Jorge Moreno Blázquez"
-__copyright__ = "Copyright 2018, Jorge Moreno Blázquez"
-__license__ = "MIT"
-__version__ = "0.0.1"
-__maintainer__ = "Jorge Moreno Blázquez"
-__email__ = "jmorenobl@gmail.com"
-__status__ = "Production"
-__all__ = ['DataReader', 'BatchDataReader']
-
 import re
 import pandas as pd
 import requests
 
 from io import StringIO
 from datetime import datetime
+
+
+__all__ = ['DataReader', 'BatchDataReader']
 
 
 def get_page_data(symbol):
