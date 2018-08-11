@@ -3,7 +3,7 @@ import pandas as pd
 import requests
 
 from io import StringIO
-from datetime import datetime
+from dateutil import parser
 
 
 __all__ = ['DataReader', 'BatchDataReader']
@@ -79,13 +79,7 @@ def get_symbol_data(start, end, url, payload, cookie):
 
 
 def DataReader(symbol, start, end, interval='1d'):
-    if not isinstance(start, datetime):
-        raise Exception('start parameter must be an instance of datetime.datetime')
-
-    if not isinstance(end, datetime):
-        raise Exception('end parameter must be an instance of datetime.datetime')
-
-    payload, cookie = setup_params(symbol, start, end, interval)
+    payload, cookie = setup_params(symbol, parser.parse(start), parser.parse(end), interval)
 
     url = "https://query1.finance.yahoo.com/v7/finance/download/{}".format(symbol)
 
@@ -96,13 +90,7 @@ def BatchDataReader(symbols, start, end, interval='1d'):
     if not isinstance(symbols, list) and not isinstance(symbols, tuple):
         raise Exception("symbols must be a list of symbols. i.e. ['APPL', 'GOOG']")
 
-    if not isinstance(start, datetime):
-        raise Exception('start parameter must be an instance of datetime.datetime')
-
-    if not isinstance(end, datetime):
-        raise Exception('end parameter must be an instance of datetime.datetime')
-
-    payload, cookie = setup_params(symbols[0], start, end, interval)
+    payload, cookie = setup_params(symbols[0], parser.parse(start), parser.parse(end), interval)
 
     symbols_dict = {}
     for symbol in symbols:
