@@ -33,5 +33,5 @@ This packages has the following dependencies:
 
 To install latest version:
 ```
-$ pip install git+https://github.com/jmorenobl/pandas-yahoo-finance.git
+$ pip install git+https://github.com/jmorenobl/pandas_yahoo_finance.git#egg=pandas_yahoo_finance
 ```
