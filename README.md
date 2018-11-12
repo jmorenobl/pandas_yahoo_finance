@@ -22,7 +22,7 @@ The API is the same that it's found in pandas-datareader. First you need to impo
 with the following command:
 
 ```
-import python_yahoo_finance as pyf
+import pandas_yahoo_finance as pyf
 ```
 
 Then you can use de Available APIs:

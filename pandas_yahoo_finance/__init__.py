@@ -4,6 +4,7 @@ import requests
 
 from io import StringIO
 from dateutil import parser
+from datetime import datetime
 
 
 __all__ = ['DataReader', 'BatchDataReader']
@@ -79,7 +80,19 @@ def get_symbol_data(start, end, url, payload, cookie):
 
 
 def DataReader(symbol, start, end, interval='1d'):
-    payload, cookie = setup_params(symbol, parser.parse(start), parser.parse(end), interval)
+    time_now = datetime.now().strftime('%H:%M:%S')
+    date_today = datetime.today()
+    parsed_start = parser.parse(start)
+    parsed_end = parser.parse(end)
+
+    if parsed_end.year == date_today.year and \
+       parsed_end.month == date_today.month and \
+       parsed_end.day == date_today.day:
+        end_with_time = '{} {}'.format(parsed_end.strftime('%Y-%m-%d'), time_now)
+    else:
+        end_with_time = '{} 23:59:59'.format(parsed_end.strftime('%Y-%m-%d'))
+
+    payload, cookie = setup_params(symbol, parsed_start, parser.parse(end_with_time), interval)
 
     url = "https://query1.finance.yahoo.com/v7/finance/download/{}".format(symbol)
 
